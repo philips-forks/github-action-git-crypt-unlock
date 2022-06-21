@@ -7,12 +7,11 @@
 ```yaml
 jobs:
   deploy:
-    name: Test git-crypt-unlock
-    runs-on: ubuntu-latest
+    name: git-crypt-unlock
     steps:
       - uses: actions/checkout@master
       - name: Unlock secrets
-        uses: sliteteam/github-action-git-crypt-unlock@1.2.0
+        uses: philips-forks/github-action-git-crypt-unlock@1.3.0
         env:
           GIT_CRYPT_KEY: ${{ secrets.GIT_CRYPT_KEY }}
 ```
@@ -22,7 +21,7 @@ jobs:
 - `GIT_CRYPT_KEY` **Required** Base64 encoded git-crypt key file.
   - Get it from an unlocked git-crypt env with:
     ```sh
-    git-crypt export-key ./tmp-key && cat ./tmp-key | base64 | pbcopy && rm ./tmp-key
+    git-crypt export-key - | base64 -w0
     ```
 
 ### Running tests

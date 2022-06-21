@@ -2,8 +2,5 @@
 
 set -eu
 
-echo "$GIT_CRYPT_KEY" | base64  -d > ./git-crypt-key
+echo "$GIT_CRYPT_KEY" | base64  -d | git-crypt unlock -
 
-git-crypt unlock ./git-crypt-key
-
-rm ./git-crypt-key
